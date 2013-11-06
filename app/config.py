@@ -20,7 +20,9 @@ elif 'win32' == platform or 'cygwin' == platform:
 	settings['platform'] = 'windows'
 
 folders = {
-	'assets': 'assets/'
+	'assets': 'assets/',
+	'sprites': 'assets/sprites/',
+	'scenes': 'assets/scenes/'
 }
 
 spriteLayers = {
