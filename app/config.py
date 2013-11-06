@@ -26,12 +26,11 @@ folders = {
 }
 
 spriteLayers = {
-	'conversation': 1,
-	'pc': 2,
-	'npc': 3,
-	'background_near': 97,
-	'background_mid': 98,
-	'background_far': 99
+	'conversation': 100,
+	'sceneNear': 200,
+	'player': 300,
+	'actor': 400,
+	'sceneFar': 500
 }
 
 world = {
