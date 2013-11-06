@@ -4,18 +4,20 @@
 
 from sys import platform
 
-app = {
+settings = {
 	'title': 'TCP',
 	'fps': 60,
-	'platform': 'unknown'
+	'platform': 'unknown',
+	'screen_w': 800,
+	'screen_h': 600
 }
 
 if 'linux' == platform or 'linux2' == platform:
-	app['platform'] = 'linux'
+	settings['platform'] = 'linux'
 elif 'darwin' == platform:
-	app['platform'] = 'mac'
+	settings['platform'] = 'mac'
 elif 'win32' == platform or 'cygwin' == platform:
-	app['platform'] = 'windows'
+	settings['platform'] = 'windows'
 
 sprite_layers = {
 	'conversation': 1,
@@ -27,11 +29,11 @@ sprite_layers = {
 }
 
 world = {
-	
+
 }
 
 colours = {
-	
+
 }
 
 app = None
