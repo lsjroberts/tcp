@@ -25,7 +25,7 @@ class Sprite( pygame.sprite.Sprite ):
 # A sprite that has a single frame.
 class StaticSprite( Sprite ):
 
-	# -------- Init --------
+    # -------- Init --------
     # Constructor
     #
     # @return StaticSprite
@@ -51,7 +51,7 @@ class StaticSprite( Sprite ):
 # A sprite that can have multiple frames.
 class AnimatedSprite( Sprite ):
 
-	# -------- Init --------
+    # -------- Init --------
     # Constructor
     #
     # @return AnimatedSprite
