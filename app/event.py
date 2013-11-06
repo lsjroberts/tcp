@@ -33,7 +33,7 @@ class EventListener( ):
     # @param  Event
     # @return None
     def notify( self, event ):
-        pass
+        raise NotImplementedError( 'You must implement a notify method on the event listener' )
 
 
 # -------- Event Manager --------
@@ -43,7 +43,7 @@ class EventManager( ):
     # -------- Init --------
     # Construct the event manager with an empty set of listeners.
     #
-    # @return Nond
+    # @return None
     def __init__( self ):
         self.listeners = set( )
 
