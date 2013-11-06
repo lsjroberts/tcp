@@ -19,7 +19,11 @@ elif 'darwin' == platform:
 elif 'win32' == platform or 'cygwin' == platform:
 	settings['platform'] = 'windows'
 
-sprite_layers = {
+folders = {
+	'assets': 'assets/'
+}
+
+spriteLayers = {
 	'conversation': 1,
 	'pc': 2,
 	'npc': 3,
