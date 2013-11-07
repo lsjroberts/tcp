@@ -16,7 +16,14 @@ class World( ):
 		pass
 
 	def setScene( self, scene ):
+		if self.scene is not None:
+			self.unloadScene( )
 		self.scene = scene
+
+	def unloadScene( self ):
+		if self.scene is None:
+			raise Exception( 'Can not unload scene, none set' )
+		self.scene = None
 
 
 # ----------- Scene -----------

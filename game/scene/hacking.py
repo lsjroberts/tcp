@@ -7,6 +7,8 @@
 
 import config
 from app.world import Scene, SceneLayer
+from app.popup import Popup
+from game.code import Parser, Compiler, Executer
 
 
 # ----------- Hacking Scene -----------
@@ -30,3 +32,14 @@ class HackingScene( Scene ):
 			'hacking/chair.jpg',
 			config.spriteLayers['sceneNear']
 		) )
+
+
+
+
+
+class CodePopup( Popup ):
+
+	def execute( self ):
+		parsed   = Parser( self.code )
+		compiled = Compiler( parsed )
+		result   = Executer( compiled )

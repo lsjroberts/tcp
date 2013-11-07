@@ -6,11 +6,12 @@
 # -------- Imports --------
 
 import pygame, config
+from app.app import UpdateableGameObject
 
 
 # -------- Sprite --------
 # Base abstract sprite
-class Sprite( pygame.sprite.Sprite ):
+class Sprite( pygame.sprite.Sprite, UpdateableGameObject ):
 
     # -------- Init --------
     # Constructor
@@ -19,6 +20,8 @@ class Sprite( pygame.sprite.Sprite ):
     def __init__( self ):
         self.groups = self.groups or []
         pygame.sprite.Sprite.__init__( self, self.groups )
+
+        UpdateableGameObject.__init__( self )
 
 
 # -------- Static Sprite --------
@@ -40,10 +43,6 @@ class StaticSprite( Sprite ):
 
     # -------- Update --------
     # Update the sprite's position
-    #
-    # @param  int  frameTime Number of milliseconds passed since the previous tick.
-    # @param  int  lifeTime  Number of milliseconds since pygame initialised.
-    # @return StaticSprite
     def update( self, frameTime, lifeTime ):
         self.rect.x = self.vector.x
         self.rect.y = self.vector.y
@@ -141,9 +140,5 @@ class AnimatedSprite( Sprite ):
             self.lastUpdate = lifeTime
 
     # ----------- Update -----------
-    # 
-    # @param  int  frameTime Number of milliseconds passed since the previous tick.
-    # @param  int  lifeTime  Number of milliseconds since pygame initialised.
-    # @return None
     def update( self, frameTime, lifeTime ):
         self.updateAnimation( lifeTime )

@@ -28,6 +28,11 @@ class App( ):
         # Set the app mode
         self.mode = 'game'
 
+        self.updateableObjects = {
+            'game': [],
+            'menu': []
+        }
+
     # -------- Tick --------
     # Process a single tick of the game loop.
     #
@@ -47,7 +52,8 @@ class App( ):
     # @param  int  lifeTime  Number of milliseconds since pygame initialised.
     # @return None
     def tickGame( self, frametime, lifeTime ):
-        pass
+        for obj in self.updateableObjects['game']:
+            pass
 
     # -------- Tick Menu --------
     # Process a single tick within the menu mode.
@@ -56,20 +62,53 @@ class App( ):
     # @param  int  lifeTime  Number of milliseconds since pygame initialised.
     # @return None
     def tickMenu( self, frametime, lifeTime ):
-        pass
+        for obj in self.updateableObjects['menu']:
+            pass
+
+
+    def addUpdateableObject( self, mode, obj ):
+        self.updateableObjects[mode].append( obj )
 
 
 # -------- App Listener --------
 # Listen for and handle app events.
 class AppListener( EventListener ):
 
-    # -------- Notify --------
-    # Listen for and handle an event.
-    #
-    # @param  Event event
-    # @return None
     def notify( self, event ):
-        if 'pygame' == event.name:
+
+        if isinstance( event, PygameEvent ):
             if pygame.QUIT == event.data.type:
                 config.app.running = False
                 print 'Exiting app...'
+
+
+# ----------- Updateable Game Object -----------
+# An object that is updated each tick when the app is in game mode
+class UpdateableGameObject( ):
+
+    def __init__( self ):
+        config.app.addUpdateableObject( 'game', self )
+
+    # ----------- Update -----------
+    # 
+    # @param  int  frameTime Number of milliseconds passed since the previous tick.
+    # @param  int  lifeTime  Number of milliseconds since pygame initialised.
+    # @return None
+    def update( self, frameTime, lifeTime ):
+        raise NotImplementedError( 'You must define an update() method on descendants of UpdateableGameObject' )
+
+
+# ----------- Updateable Menu Object -----------
+# An object that is updated each tick when the app is in menu mode
+class UpdateableMenuObject( ):
+
+    def __init__( self ):
+        config.app.addUpdateableObject( 'menu', self )
+
+    # ----------- Update -----------
+    # 
+    # @param  int  frameTime Number of milliseconds passed since the previous tick.
+    # @param  int  lifeTime  Number of milliseconds since pygame initialised.
+    # @return None
+    def update( self, frameTime, lifeTime ):
+        raise NotImplementedError( 'You must define an update() method on descendants of UpdateableMenuObject' )
