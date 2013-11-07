@@ -5,6 +5,7 @@
 
 # -------- Imports --------
 
+import config
 from app.world import Scene, SceneLayer
 
 
