@@ -6,7 +6,7 @@
 # -------- Imports --------
 
 import config
-from app.actor import ControllableActor
+from actor import ControllableActor
 
 
 # ----------- Player -----------

@@ -17,54 +17,54 @@ class Actor( ):
     #
     # @return Actor
     def __init__( self ):
-    	self.sprite = None
+        self.sprite = None
 
     def setSprite( self, sprite ):
-    	self.sprite = sprite
+        self.sprite = sprite
 
-   	def update( self, frameTime, lifeTime ):
-   		pass
+    def update( self, frameTime, lifeTime ):
+        pass
 
 
 # ----------- Moveable Actor -----------
 # An actor that can be repositioned after instantiation.
 class MoveableActor( Actor ):
 
-	def move( self, frameTime ):
-		pass
+    def move( self, frameTime ):
+        pass
 
-	def update( self, frameTime, lifeTime ):
-		self.move( frameTime )
-		Actor.update( self, frameTime, lifeTime )
+    def update( self, frameTime, lifeTime ):
+        self.move( frameTime )
+        Actor.update( self, frameTime, lifeTime )
 
 
 # ----------- Controllable Actor -----------
 # An actor that can be positioned by the player.
 class ControllableActor( MoveableActor ):
-	pass
+    pass
 
 
 # ----------- Conversational Actor -----------
 # An actor who can hold a conversation.
 class ConversationalActor( Actor ):
-	pass
+    pass
 
 
 # ----------- Emotional Actor -----------
 # An actor who has emotions and reactions.
 class EmotionalActor( Actor ):
-	
-	def addEmotion( emotion ):
-		if self.emotions is None:
-			self.emotions = {}
+    
+    def addEmotion( self, emotion ):
+        if self.emotions is None:
+            self.emotions = {}
 
-		self.emotions[emotion.name] = emotion
+        self.emotions[emotion.name] = emotion
 
-	def addTargetedEmotion( emotion, target ):
-		if self.targetedEmotions is None:
-			self.targetedEmotions = {}
+    def addTargetedEmotion( self, emotion, target ):
+        if self.targetedEmotions is None:
+            self.targetedEmotions = {}
 
-		if self.targetedEmotions[target.name] is None:
-			self.targetedEmotions[target.name] = {}
+        if self.targetedEmotions[target.name] is None:
+            self.targetedEmotions[target.name] = {}
 
-		self.targetedEmotions[target.name][emotion.name] = emotion
+        self.targetedEmotions[target.name][emotion.name] = emotion

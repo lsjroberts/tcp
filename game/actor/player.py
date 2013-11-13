@@ -35,10 +35,10 @@ class Founder( Player ):
 		sprite = AnimatedSprite( 'player/founder.png' )
 
 		sprite.addAnimationState( 'idle',         0,  3,  2 )
-		sprite.addAnimationState( 'idle-fidget',  4,  7,  4 )
-		sprite.addAnimationState( 'walk-left',    8, 11,  4 )
-		sprite.addAnimationState( 'walk-right',  12, 15,  4 )
-		sprite.addAnimationState( 'idle-chat',   16, 19,  4 )
+		# sprite.addAnimationState( 'idle-fidget',  4,  7,  4 )
+		# sprite.addAnimationState( 'walk-left',    8, 11,  4 )
+		# sprite.addAnimationState( 'walk-right',  12, 15,  4 )
+		# sprite.addAnimationState( 'idle-chat',   16, 19,  4 )
 
 		sprite.setAnimationState( 'idle' )
 

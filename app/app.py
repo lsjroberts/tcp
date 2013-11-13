@@ -6,7 +6,7 @@
 # -------- Imports --------
 
 import pygame, config
-from event import EventManager, EventListener
+from event import EventManager, EventListener, PygameEvent
 
 
 # -------- App --------
@@ -25,8 +25,8 @@ class App( ):
         self.events = EventManager( )
         self.events.registerListener( AppListener() )
 
-        # Set the app mode
-        self.mode = 'game'
+        # Set the default app mode
+        self.mode = 'menu'
 
         self.updateableObjects = {
             'game': [],
@@ -51,9 +51,21 @@ class App( ):
     # @param  int  frameTime Number of milliseconds passed since the previous tick.
     # @param  int  lifeTime  Number of milliseconds since pygame initialised.
     # @return None
-    def tickGame( self, frametime, lifeTime ):
+    def tickGame( self, frameTime, lifeTime ):
+
+        # Fill with black
+        config.screen.fill( config.settings['screen_fill'] )
+
+        # Update sprites
         for obj in self.updateableObjects['game']:
-            pass
+            obj.update( int(frameTime), int(lifeTime) )
+
+        # Draw sprites
+        rects = config.sprites.draw( config.screen )
+
+        #pygame.display.update( rects )
+
+        pygame.display.flip( )
 
     # -------- Tick Menu --------
     # Process a single tick within the menu mode.
@@ -61,13 +73,19 @@ class App( ):
     # @param  int  frameTime Number of milliseconds passed since the previous tick.
     # @param  int  lifeTime  Number of milliseconds since pygame initialised.
     # @return None
-    def tickMenu( self, frametime, lifeTime ):
+    def tickMenu( self, frameTime, lifeTime ):
         for obj in self.updateableObjects['menu']:
             pass
 
 
     def addUpdateableObject( self, mode, obj ):
         self.updateableObjects[mode].append( obj )
+
+    def setMode( self, mode ):
+        self.mode = mode
+
+    def setWorld( self, world ):
+        self.world = world
 
 
 # -------- App Listener --------

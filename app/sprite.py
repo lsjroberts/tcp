@@ -6,7 +6,7 @@
 # -------- Imports --------
 
 import pygame, config
-from app.app import UpdateableGameObject
+from app import UpdateableGameObject
 
 
 # -------- Sprite --------
@@ -18,7 +18,7 @@ class Sprite( pygame.sprite.Sprite, UpdateableGameObject ):
     #
     # @return Sprite
     def __init__( self ):
-        self.groups = self.groups or []
+        self.groups = config.sprites, config.spriteGroups['all']
         pygame.sprite.Sprite.__init__( self, self.groups )
 
         UpdateableGameObject.__init__( self )
@@ -38,14 +38,12 @@ class StaticSprite( Sprite ):
         self.vector = vector
         self.image = pygame.image.load( config.folders['sprites'] + src ).convert_alpha( )
         self.rect = self.image.get_rect( )
-        self.rect.x = self.vector.x
-        self.rect.y = self.vector.y
+        self.rect.x, self.rect.y = self.vector
 
     # -------- Update --------
     # Update the sprite's position
     def update( self, frameTime, lifeTime ):
-        self.rect.x = self.vector.x
-        self.rect.y = self.vector.y
+        self.rect.x, self.rect.y = self.vector
 
 
 # -------- Animated Sprite --------
@@ -56,14 +54,14 @@ class AnimatedSprite( Sprite ):
     # Constructor
     #
     # @return AnimatedSprite
-    def __init__( self, src, vector ):
+    def __init__( self, src, vector=(0,0) ):
         Sprite.__init__( self )
 
         self.images = []
         self.numFrames = 0
         self.states = {}
-        self.vector = vector
         self.loaded = False
+        self.vector = vector
 
         self.srcImage = pygame.image.load( config.folders['sprites'] + src ).convert_alpha( )
         self.srcWidth, self.srcHeight = self.srcImage.get_size( )
@@ -98,8 +96,7 @@ class AnimatedSprite( Sprite ):
             self.images.append( subSurface )
         self.image = self.images[0]
         self.rect = self.image.get_rect( )
-        self.rect.x = self.vector.x
-        self.rect.y = self.vector.y
+        self.rect.x, self.rect.y = self.vector
 
     # ----------- Set Animation State -----------
     # 
@@ -122,16 +119,15 @@ class AnimatedSprite( Sprite ):
         state = self.states[self.state]
 
         # Update the rect vector position
-        self.rect.x = self.vector.x
-        self.rect.y = self.vector.y
+        self.rect.x, self.rect.y = self.vector
 
         # Check if enough time has passed since the last update for this state
         if lifeTime - self.lastUpdate > state['delay']:
             self.frame += 1
 
             # Wrap the frame between the state start and end frame
-            if self.frame < state['start']: self.frame = state['start']
-            if self.frame > state['end']: self.frame = state['end']
+            if self.frame < state['start']: self.frame = state['end']
+            if self.frame > state['end']: self.frame = state['start']
 
             # Change the sprite image to that of the current frame
             self.image = self.images[self.frame]

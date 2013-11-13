@@ -2,39 +2,6 @@
 # Handles event listening and firing.
 # ----------------------------
 
-# -------- Event --------
-# Superclass for any events that might be generated for an object and sent to
-# the event manager.
-class Event( ):
-    name = 'generic'
-
-    # -------- Init --------
-    # Construct the event and set it's data.
-    #
-    # @param  mixed data Any optional data to add to the event.
-    # @return Event
-    def __init__( self, data=None ):
-        self.data = data
-
-
-# -------- Pygame Event --------
-# Generic pygame event
-class PygameEvent( ):
-    name = 'pygame'
-
-
-# -------- Event Listener --------
-# Superclass for any event listeners.
-class EventListener( ):
-
-    # -------- Notify --------
-    # Check and handle an event.
-    #
-    # @param  Event
-    # @return None
-    def notify( self, event ):
-        raise NotImplementedError( 'You must implement a notify method on the event listener' )
-
 
 # -------- Event Manager --------
 # Handles registering listeners and notifying them of events.
@@ -45,7 +12,7 @@ class EventManager( ):
     #
     # @return None
     def __init__( self ):
-        self.listeners = set( )
+        self.listeners = [ ]
 
     # -------- Register Listener --------
     # Add a listener if it has not already been registered.
@@ -73,3 +40,37 @@ class EventManager( ):
     def post( self, event ):
         for listener in self.listeners:
             listener.notify( event )
+
+
+# -------- Event Listener --------
+# Superclass for any event listeners.
+class EventListener( ):
+
+    # -------- Notify --------
+    # Check and handle an event.
+    #
+    # @param  Event
+    # @return None
+    def notify( self, event ):
+        raise NotImplementedError( 'You must implement a notify method on the event listener' )
+
+
+# -------- Event --------
+# Superclass for any events that might be generated for an object and sent to
+# the event manager.
+class Event( ):
+    name = 'generic'
+
+    # -------- Init --------
+    # Construct the event and set it's data.
+    #
+    # @param  mixed data Any optional data to add to the event.
+    # @return Event
+    def __init__( self, data=None ):
+        self.data = data
+
+
+# -------- Pygame Event --------
+# Generic pygame event
+class PygameEvent( Event ):
+    name = 'pygame'

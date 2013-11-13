@@ -9,7 +9,8 @@ settings = {
 	'fps': 60,
 	'platform': 'unknown',
 	'screen_w': 800,
-	'screen_h': 600
+	'screen_h': 600,
+	'screen_fill': (255,0,0)
 }
 
 if 'linux' == platform or 'linux2' == platform:
@@ -19,11 +20,15 @@ elif 'darwin' == platform:
 elif 'win32' == platform or 'cygwin' == platform:
 	settings['platform'] = 'windows'
 
+
 folders = {
 	'assets': 'assets/',
 	'sprites': 'assets/sprites/',
 	'scenes': 'assets/scenes/'
 }
+
+
+sprites = None
 
 spriteLayers = {
 	'conversation': 100,
@@ -33,13 +38,20 @@ spriteLayers = {
 	'sceneFar': 500
 }
 
+spriteGroups = {
+	
+}
+
+
 world = {
 
 }
 
+
 colours = {
 
 }
+
 
 app = None
 screen = None
