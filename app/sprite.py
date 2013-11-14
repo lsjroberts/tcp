@@ -32,11 +32,17 @@ class StaticSprite( Sprite ):
     # Constructor
     #
     # @return StaticSprite
-    def __init__( self, src, vector ):
+    def __init__( self, src, vector=(0,0) ):
         Sprite.__init__( self )
 
+        prefix = config.folders['sprites']
+        for folder in config.folders:
+            if folder == src[:len(folder)]:
+                prefix = ''
+
+        self.image = pygame.image.load( prefix + src ).convert_alpha( )
+
         self.vector = vector
-        self.image = pygame.image.load( config.folders['sprites'] + src ).convert_alpha( )
         self.rect = self.image.get_rect( )
         self.rect.x, self.rect.y = self.vector
 
@@ -63,7 +69,10 @@ class AnimatedSprite( Sprite ):
         self.loaded = False
         self.vector = vector
 
-        self.srcImage = pygame.image.load( config.folders['sprites'] + src ).convert_alpha( )
+        if '/' != src[:1]:
+            src = config.folders['sprites'] + src
+
+        self.srcImage = pygame.image.load( src ).convert_alpha( )
         self.srcWidth, self.srcHeight = self.srcImage.get_size( )
 
         self.lastUpdate = 0
@@ -71,7 +80,7 @@ class AnimatedSprite( Sprite ):
         self.state = ''
 
     # ----------- Add Animation State -----------
-    # 
+    #
     # @param  string name  State identifier name
     # @param  int    start Frame to start the animation at
     # @param  int    end   Frame to end the animation at
@@ -87,7 +96,7 @@ class AnimatedSprite( Sprite ):
 
     # ----------- Load States -----------
     # Split the src image into each frame image.
-    # 
+    #
     # @return None
     def loadStates( self ):
         self.frameWidth = self.srcWidth / self.numFrames
@@ -99,7 +108,7 @@ class AnimatedSprite( Sprite ):
         self.rect.x, self.rect.y = self.vector
 
     # ----------- Set Animation State -----------
-    # 
+    #
     # @param  string name State identifier name.
     # @return None
     def setAnimationState( self, name ):
@@ -111,7 +120,7 @@ class AnimatedSprite( Sprite ):
             self.lastUpdate = 0
 
     # ----------- Update Animation -----------
-    # 
+    #
     # @param  int lifeTime Number of milliseconds since pygame initialised.
     # @return None
     def updateAnimation( self, lifeTime ):

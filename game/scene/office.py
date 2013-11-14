@@ -16,6 +16,6 @@ class OfficeScene( Scene ):
 		Scene.__init__( self )
 
 		self.addLayer( SceneLayer(
-			"office/wall.jpg",
+			'office/background.png',
 			config.spriteLayers['sceneFar']
 		) )

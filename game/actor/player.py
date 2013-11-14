@@ -13,8 +13,8 @@ from app.sprite import AnimatedSprite
 #
 class Hacker( Player ):
 
-	def __init__( self ):
-		sprite = AnimatedSprite( 'player/hacker.png' )
+	def __init__( self, vector=(0,0) ):
+		sprite = AnimatedSprite( 'player/hacker.png', vector )
 
 		sprite.addAnimationState( 'idle',         0,  3,  2 )
 		sprite.addAnimationState( 'idle-fidget',  4,  7,  4 )
@@ -31,8 +31,8 @@ class Hacker( Player ):
 #
 class Founder( Player ):
 
-	def __init__( self ):
-		sprite = AnimatedSprite( 'player/founder.png' )
+	def __init__( self, vector=(0,0) ):
+		sprite = AnimatedSprite( 'player/founder.png', vector )
 
 		sprite.addAnimationState( 'idle',         0,  3,  2 )
 		# sprite.addAnimationState( 'idle-fidget',  4,  7,  4 )
@@ -49,8 +49,8 @@ class Founder( Player ):
 #
 class Android( Player ):
 
-	def __init__( self ):
-		sprite = AnimatedSprite( 'player/android.png' )
+	def __init__( self, vector=(0,0) ):
+		sprite = AnimatedSprite( 'player/android.png', vector )
 
 		sprite.addAnimationState( 'idle',         0,  3,  2 )
 		sprite.addAnimationState( 'idle-fidget',  4,  7,  4 )

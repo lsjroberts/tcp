@@ -10,7 +10,7 @@ settings = {
 	'platform': 'unknown',
 	'screen_w': 800,
 	'screen_h': 600,
-	'screen_fill': (255,0,0)
+	'screen_fill': (0,0,0)
 }
 
 if 'linux' == platform or 'linux2' == platform:
@@ -24,7 +24,9 @@ elif 'win32' == platform or 'cygwin' == platform:
 folders = {
 	'assets': 'assets/',
 	'sprites': 'assets/sprites/',
-	'scenes': 'assets/scenes/'
+	'scenes': 'assets/scenes/',
+	'data': 'data/',
+	'story': 'data/story/'
 }
 
 
@@ -39,7 +41,7 @@ spriteLayers = {
 }
 
 spriteGroups = {
-	
+
 }
 
 

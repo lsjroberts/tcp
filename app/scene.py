@@ -6,6 +6,7 @@
 # -------- Imports --------
 
 import pygame, config
+from sprite import StaticSprite
 
 
 # ----------- Scene -----------
@@ -25,8 +26,9 @@ class Scene( ):
 
 # ----------- Scene Layer -----------
 # A layer image with depth position in the scene.
-class SceneLayer( ):
+class SceneLayer( StaticSprite ):
 
 	def __init__( self, src, depth ):
-		self.image = pygame.image.load( config.folders['scenes'] + src ).convert_alpha( )
+		# self.image = pygame.image.load( config.folders['scenes'] + src ).convert_alpha( )
+		StaticSprite.__init__( self, config.folders['scenes'] + src )
 		self.depth = depth
