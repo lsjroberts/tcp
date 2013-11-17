@@ -7,6 +7,7 @@
 
 from app.player import Player
 from app.sprite import AnimatedSprite
+from app.vector import Vector
 
 
 # ----------- Hacker -----------
@@ -31,7 +32,7 @@ class Hacker( Player ):
 #
 class Founder( Player ):
 
-	def __init__( self, vector=(0,0) ):
+	def __init__( self, vector=Vector(0,0) ):
 		sprite = AnimatedSprite( 'player/founder.png', vector )
 
 		sprite.addAnimationState( 'idle',         0,  3,  2 )

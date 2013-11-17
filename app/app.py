@@ -47,7 +47,7 @@ class App( ):
 
     # -------- Tick Game --------
     # Process a single tick within the game mode.
-
+    #
     # @param  int  frameTime Number of milliseconds passed since the previous tick.
     # @param  int  lifeTime  Number of milliseconds since pygame initialised.
     # @return None
@@ -69,7 +69,7 @@ class App( ):
 
     # -------- Tick Menu --------
     # Process a single tick within the menu mode.
-
+    #
     # @param  int  frameTime Number of milliseconds passed since the previous tick.
     # @param  int  lifeTime  Number of milliseconds since pygame initialised.
     # @return None

@@ -10,7 +10,7 @@ settings = {
 	'platform': 'unknown',
 	'screen_w': 800,
 	'screen_h': 600,
-	'screen_fill': (0,0,0)
+	'screen_fill': (20,169,123)
 }
 
 if 'linux' == platform or 'linux2' == platform:

@@ -17,4 +17,4 @@ class Level1( World ):
 	def __init__( self ):
 		World.__init__( self )
 		self.setScene( OfficeScene() )
-		self.scene.addActor( Founder((200, 200)) )
+		self.scene.addActor( Founder() )
